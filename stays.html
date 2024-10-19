@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stays - Travel Deals</title>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Travel Deals - Stays</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="stays.html">Stays</a></li>
+            <li><a href="flights.html">Flights</a></li>
+            <li><a href="cars.html">Cars</a></li>
+            <li><a href="cruises.html">Cruises</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside>
+            <h2>Special Offers</h2>
+            <p>Exclusive discounts on stays...</p>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <h2>Top Deals for Stays</h2>
+            <p>Explore the best deals on hotels and rentals...</p>
+        </main>
+    </div>
+
+	<p id="datetime"></p>
+    <!-- Footer -->
+    <footer>
+        <p>Contact Us | About Us</p>
+    </footer>
+
+	<script>
+    function displayDateTime() {
+      const now = new Date();
+      const dateTimeString = now.toLocaleString();
+      document.getElementById("datetime").innerText = `Current Date and Time: ${dateTimeString}`;
+    }
+    displayDateTime();
+  </script>
+</body>
+
+</html>
