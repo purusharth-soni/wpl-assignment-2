@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mystyle.css" />
+    <title>Stays</title>
+  </head>
+  <body>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stays.html">Stays</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="cruises.html">Cruises</a></li>
+        <li><a href="contact-us.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h2>Find a Stay</h2>
+      <form id="staysForm">
+        <label for="city">City (Texas or California)</label>
+        <input type="text" id="city" required />
+
+        <label for="checkin">Check-in Date</label>
+        <input type="date" id="checkin" required />
+
+        <label for="checkout">Check-out Date</label>
+        <input type="date" id="checkout" required />
+
+        <label for="guests">Number of Guests</label>
+        <input type="number" id="guests" min="1" max="2" required />
+
+        <button type="submit">Search</button>
+      </form>
+
+      <div id="staysResult"></div>
+    </div>
+
+    <script src="js/validation.js"></script>
+  </body>
+</html>
