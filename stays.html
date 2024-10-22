@@ -30,8 +30,14 @@
         <label for="checkout">Check-out Date</label>
         <input type="date" id="checkout" required />
 
-        <label for="guests">Number of Guests</label>
-        <input type="number" id="guests" min="1" max="2" required />
+        <label for="adults">Number of Adults</label>
+        <input type="number" id="adults" min="1" required />
+
+        <label for="children">Number of Children</label>
+        <input type="number" id="children" min="0" required />
+
+        <label for="infants">Number of Infants</label>
+        <input type="number" id="infants" min="0" required />
 
         <button type="submit">Search</button>
       </form>
@@ -39,6 +45,126 @@
       <div id="staysResult"></div>
     </div>
 
-    <script src="js/validation.js"></script>
+    <script>
+      document
+        .getElementById("staysForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Collect input values
+          const city = document.getElementById("city").value.trim();
+          const checkin = new Date(document.getElementById("checkin").value);
+          const checkout = new Date(document.getElementById("checkout").value);
+          const adults = parseInt(document.getElementById("adults").value, 10);
+          const children = parseInt(
+            document.getElementById("children").value,
+            10
+          );
+          const infants = parseInt(
+            document.getElementById("infants").value,
+            10
+          );
+
+          const validCities = [
+            // Texas
+            "Austin",
+            "Dallas",
+            "Houston",
+            "San Antonio",
+            "Fort Worth",
+            "El Paso",
+            "Arlington",
+            "Corpus Christi",
+            "Plano",
+            "Lubbock",
+            "McAllen",
+            "Amarillo",
+            "Brownsville",
+            "Waco",
+            "Killeen",
+            "Midland",
+            "Odessa",
+            "Harlingen",
+            "Laredo",
+            "Beaumont",
+            "College Station",
+            "Wichita Falls",
+            "Longview",
+            "Abilene",
+            "Tyler",
+
+            // California
+            "Los Angeles",
+            "San Francisco",
+            "San Diego",
+            "San Jose",
+            "Sacramento",
+            "Fresno",
+            "Oakland",
+            "Santa Ana",
+            "Long Beach",
+            "Burbank",
+            "Palm Springs",
+            "Ontario",
+            "Santa Barbara",
+            "Bakersfield",
+            "Riverside",
+            "Stockton",
+            "Modesto",
+            "San Bernardino",
+            "Redding",
+            "Santa Rosa",
+            "Oxnard",
+            "Visalia",
+            "Chico",
+            "Monterey",
+            "Eureka",
+          ];
+
+          const staysResult = document.getElementById("staysResult");
+          staysResult.innerHTML = ""; // Clear previous results
+
+          // Validation for city
+          if (!validCities.includes(city)) {
+            staysResult.innerHTML =
+              "<p>Please enter a valid city from Texas or California.</p>";
+            return;
+          }
+
+          // Validation for check-in and check-out dates
+          const minDate = new Date("2024-09-01");
+          const maxDate = new Date("2024-12-01");
+          if (
+            checkin < minDate ||
+            checkin > maxDate ||
+            checkout < minDate ||
+            checkout > maxDate ||
+            checkin >= checkout
+          ) {
+            staysResult.innerHTML =
+              "<p>Check-in and check-out dates must be between September 1, 2024, and December 1, 2024, and check-out must be after check-in.</p>";
+            return;
+          }
+
+          // Calculate number of rooms
+          let totalGuests = adults + children;
+          let roomsNeeded = Math.ceil(totalGuests / 2);
+
+          // Display information
+          staysResult.innerHTML = `
+          <p>Booking Information:<p>
+          <p>City: ${city}</p>
+          <p>Check-in: ${checkin.toDateString()}</p>
+          <p>Check-out: ${checkout.toDateString()}</p>
+          <p>Number of Adults: ${adults}</p>
+          <p>Number of Children: ${children}</p>
+          <p>Number of Infants: ${infants}</p>
+          <p>Rooms Needed: ${roomsNeeded}</p>
+        `;
+
+          // Clear form inputs after successful search
+          document.getElementById("staysForm").reset();
+        });
+    </script>
   </body>
 </html>
