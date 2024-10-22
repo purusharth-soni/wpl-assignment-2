@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mystyle.css" />
+    <title>Flights</title>
+  </head>
+  <body>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stays.html">Stays</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="cruises.html">Cruises</a></li>
+        <li><a href="contact-us.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h2>Book a Flight</h2>
+      <form id="flightForm">
+        <label for="tripType">Trip Type</label>
+        <select id="tripType">
+          <option value="oneway">One Way</option>
+          <option value="roundtrip">Round Trip</option>
+        </select>
+
+        <div id="onewayFields">
+          <label for="origin">Origin (Texas or California)</label>
+          <input type="text" id="origin" required />
+
+          <label for="destination">Destination (Texas or California)</label>
+          <input type="text" id="destination" required />
+
+          <label for="departure">Departure Date</label>
+          <input type="date" id="departure" required />
+        </div>
+
+        <button type="submit">Search</button>
+      </form>
+
+      <div id="flightResult"></div>
+    </div>
+
+    <script src="js/validation.js"></script>
+  </body>
+</html>
