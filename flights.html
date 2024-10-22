@@ -36,14 +36,33 @@
 
           <label for="departure">Departure Date</label>
           <input type="date" id="departure" required />
+		  
+		  <div id="arrivalDateField" style="display: none;">
+            <label for="arrival">Arrival Date</label>
+            <input type="date" id="arrival" />
+          </div>
         </div>
+		
+		<div id="passengerSection">
+          <span id="passengerIcon" style="cursor: pointer;">👥 Passengers</span>
+          <div id="passengerForm" style="display: none;">
+            <label for="adults">Adults</label>
+            <input type="number" id="adults" min="1" value="1" required />
 
-        <button type="submit">Search</button>
+            <label for="children">Children</label>
+            <input type="number" id="children" min="0" value="0" />
+
+            <label for="infants">Infants</label>
+            <input type="number" id="infants" min="0" value="0" />
+          </div>
+        </div>
+		
+        <button type="submit" id="flightSearch">Search</button>
       </form>
 
       <div id="flightResult"></div>
     </div>
 
-    <script src="js/validation.js"></script>
+    <script src="js/flightsValidation.js"></script>
   </body>
 </html>

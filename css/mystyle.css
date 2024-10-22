@@ -83,3 +83,11 @@ footer {
   width: 100%;
   bottom: 0;
 }
+
+#flightSearch{
+	margin-top: 20px;
+}
+
+#passengerForm{
+	margin-top: 20px;
+}
