@@ -40,7 +40,7 @@ document.getElementById("staysForm").addEventListener("submit", function (e) {
 
   // Display information
   staysResult.innerHTML = `
-  <p>Booking Information:<p>
+  <h2>Booking Information:<h2>
   <p>City: ${city}</p>
   <p>Check-in: ${checkin.toDateString()}</p>
   <p>Check-out: ${checkout.toDateString()}</p>
