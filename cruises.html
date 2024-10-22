@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mystyle.css" />
+    <title>Cruises</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stays.html">Stays</a></li>
+        <li><a href="flights.html">Flights</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="cruises.html">Cruises</a></li>
+        <li><a href="contact-us.html">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h2>Book a Cruise</h2>
+      <form id="cruiseForm">
+        <label for="destination">Destination:</label>
+        <select id="destination" required>
+          <option value="">Select a destination</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Europe">Europe</option>
+          <option value="Mexico">Mexico</option>
+        </select>
+
+        <label for="departureDate">Departure Date:</label>
+        <input type="date" id="departureDate" required />
+
+        <label for="durationMin">Duration (Minimum Days):</label>
+        <input type="number" id="durationMin" required />
+
+        <label for="durationMax">Duration (Maximum Days):</label>
+        <input type="number" id="durationMax" required />
+
+        <h3>Number of Guests</h3>
+        <label for="adults">Adults:</label>
+        <input type="number" id="adults" value="0" min="0" max="2" />
+
+        <label for="children">Children:</label>
+        <input type="number" id="children" value="0" min="0" />
+
+        <label for="infants">Infants:</label>
+        <input type="number" id="infants" value="0" min="0" />
+
+        <button type="submit">Submit</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script src="./js/cruiseValidation.js"></script>
+  </body>
+</html>
