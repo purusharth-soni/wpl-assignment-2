@@ -1,18 +1,16 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: 10%;
   padding: 20px;
 }
 
 .navbar {
-  background-color: #007bff;
+  background-color: blue;
   padding: 15px;
   list-style-type: none;
   margin: 0;
@@ -78,10 +76,10 @@ footer {
   background-color: #333;
   color: white;
   text-align: center;
-  padding: 10px 0;
   position: fixed;
   width: 100%;
   bottom: 0;
+  height: 50px;
 }
 
 #flightSearch{
@@ -94,4 +92,38 @@ footer {
 
 #header {
     text-align: center;
+}
+
+aside {
+    background-color: lightgray;
+    width: 100px;
+    padding: 15px;
+    float: left;
+    clear: left;
+    position: relative;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 10px 0;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+}
+
+aside ul li a:hover {
+    background-color: #ddd;
+}
+
+.main-body {
+    display: flex;
+    height: 100vh;
 }

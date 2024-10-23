@@ -15,5 +15,3 @@ document.getElementById("staysForm").addEventListener("submit", function (e) {
     "staysResult"
   ).textContent = `City: ${city}, Check-in: ${checkin}, Check-out: ${checkout}, Guests: ${guests}`;
 });
-
-// Similar validation can be added for flights, cars, and contact-us

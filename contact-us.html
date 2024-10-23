@@ -1,56 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/mystyle.css" />
     <title>Contact Us</title>
-  </head>
-  <body>
+</head>
+<body>
     <div style="text-align: center;">
-      <h1>Welcome to Car Rentals</h1>
-      <p id="datetime"></p>
+        <h1>Welcome to Car Rentals</h1>
+        <p id="datetime"></p>
     </div>
     <nav>
-      <ul class="navbar">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="stays.html">Stays</a></li>
-        <li><a href="flights.html">Flights</a></li>
-        <li><a href="cars.html">Cars</a></li>
-        <li><a href="cruises.html">Cruises</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
-      </ul>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="stays.html">Stays</a></li>
+            <li><a href="flights.html">Flights</a></li>
+            <li><a href="cars.html">Cars</a></li>
+            <li><a href="cruises.html">Cruises</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
     </nav>
-
-    <div class="container">
-      <h2>Contact Us</h2>
-      <form id="contactForm">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" required />
-
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" required />
-
-        <label for="phone">Phone Number (e.g., (123) 456-7890)</label>
-        <input type="text" id="phone" required />
-
-        <label for="email">Email</label>
-        <input type="text" id="email" required />
-
-        <label for="gender">Gender</label>
-        <input type="radio" name="gender" value="Male" required /> Male
-        <input type="radio" name="gender" value="Female" required /> Female
-
-        <label for="comments">Comments</label>
-        <textarea id="comments" required></textarea>
-
-        <button type="submit">Submit</button>
-      </form>
-
-      <div id="contactResult"></div>
+    
+    <div class="main-body">
+        <aside>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stays.html">Stays</a></li>
+                <li><a href="flights.html">Flights</a></li>
+                <li><a href="cars.html">Cars</a></li>
+                <li><a href="cruises.html">Cruises</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+            </ul>
+        </aside>
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" required />
+                
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" required />
+                
+                <label for="phone">Phone Number (e.g., (123) 456-7890)</label>
+                <input type="text" id="phone" required />
+                
+                <label for="email">Email</label>
+                <input type="text" id="email" required />
+                
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" value="Male" required /> Male
+                <input type="radio" name="gender" value="Female" required /> Female
+                
+                <label for="comments">Comments</label>
+                <textarea id="comments" required></textarea>
+                
+                <button type="submit">Submit</button>
+            </form>
+            
+            <div id="contactResult"></div>
+        </div>
     </div>
-
+    
+    <footer>
+        <p class="datetime"></p>
+    </footer>
+    
     <script src="./js/commonValidation.js"></script>
     <script src="js/contactUsValidation.js"></script>
-  </body>
+</body>
 </html>

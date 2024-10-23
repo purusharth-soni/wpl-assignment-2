@@ -14,8 +14,7 @@ document.getElementById("staysForm").addEventListener("submit", function (e) {
 
   // Validation for city
   if (!isValidCity(city)) {
-    staysResult.innerHTML =
-      "<p>Please enter a valid city from Texas or California.</p>";
+    alert("Please enter a valid city from Texas or California.");
     return;
   }
 
@@ -29,8 +28,8 @@ document.getElementById("staysForm").addEventListener("submit", function (e) {
     checkout > maxDate ||
     checkin >= checkout
   ) {
-    staysResult.innerHTML =
-      "<p>Check-in and check-out dates must be between September 1, 2024, and December 1, 2024, and check-out must be after check-in.</p>";
+    alert("Check-in and check-out dates must be between September 1, 2024," +
+        " and December 1, 2024, and check-out must be after check-in.");
     return;
   }
 

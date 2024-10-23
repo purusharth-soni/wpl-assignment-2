@@ -64,7 +64,7 @@ function isValidCity(city) {
 
 function updateDateTime() {
     const now = new Date();
-    const datetimeElement = document.getElementById('datetime');
+    const datetimeElement = document.getElementsByClassName("datetime")[0]; 
     datetimeElement.textContent = now.toLocaleString();
 }
 setInterval(updateDateTime, 1000);
