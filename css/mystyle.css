@@ -1,93 +1,86 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-  max-width: 1200px;
-  margin-left: 10%;
-  padding: 20px;
+    margin-left: 10%;
+    padding: 20px;
+    width: 60%;
 }
 
 .navbar {
-  background-color: blue;
-  padding: 15px;
-  list-style-type: none;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
+    background-color: blue;
+    padding: 15px;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
 }
 
 .navbar li {
-  display: inline;
+    display: inline;
 }
 
 .navbar a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
 }
 
 .navbar a:hover {
-  background-color: #0056b3;
-}
-
-h1,
-h2 {
-  color: #333;
+    background-color: #0056b3;
 }
 
 form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
+    display: block;
+    margin-bottom: 8px;
 }
 
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+    background-color: lightblue;
 }
 
 footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  height: 50px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 50px;
 }
 
-#flightSearch{
-	margin-top: 20px;
+#flightSearch {
+    margin-top: 20px;
 }
 
-#passengerForm{
-	margin-top: 20px;
+#passengerForm {
+    margin-top: 20px;
 }
 
 #header {
@@ -114,16 +107,17 @@ aside ul li {
 
 aside ul li a {
     text-decoration: none;
-    color: #333;
+    color: gray;
     display: block;
     padding: 10px;
 }
 
 aside ul li a:hover {
-    background-color: #ddd;
+    background-color: lightblue;
 }
 
 .main-body {
     display: flex;
     height: 100vh;
+    margin-bottom: 100px;
 }
