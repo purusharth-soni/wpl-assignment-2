@@ -61,3 +61,11 @@ function isValidCity(city) {
     validCities.map((c) => c.toLowerCase()).indexOf(city.toLowerCase()) !== -1
   );
 }
+
+function updateDateTime() {
+    const now = new Date();
+    const datetimeElement = document.getElementById('datetime');
+    datetimeElement.textContent = now.toLocaleString();
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
