@@ -1,7 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-	fontSize: 16px;
-	backgroundColor: white;
 }
 
 .container {
@@ -91,11 +89,12 @@ footer {
 
 aside {
     background-color: lightgray;
-    width: 100px;
+    width: 150px;
     padding: 15px;
     float: left;
     clear: left;
     position: relative;
+    font-size: 16px;
 }
 
 aside ul {
@@ -109,7 +108,7 @@ aside ul li {
 
 aside ul li a {
     text-decoration: none;
-    color: gray;
+    color: black;
     display: block;
     padding: 10px;
 }
