@@ -1,4 +1,3 @@
-// validation.js for flights.html
 const tripTypeSelect = document.getElementById("tripType");
 const passengerIcon = document.getElementById("passengerIcon");
 const passengerForm = document.getElementById("passengerForm");
