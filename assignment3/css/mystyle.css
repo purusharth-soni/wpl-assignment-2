@@ -122,3 +122,22 @@ aside ul li a:hover {
     height: 100vh;
     margin-bottom: 200px;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+th {
+    background-color: lightblue;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid;
+}
+
+td {
+    padding: 12px;
+    border: 1px solid;
+}
