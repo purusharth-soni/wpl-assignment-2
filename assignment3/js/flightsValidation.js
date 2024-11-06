@@ -112,8 +112,6 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
         Infants: ${infants}</p>`;
     flightResult.innerHTML = resultString;
 
-    if (tripTypeSelect.value === "roundtrip") return;
-
     const departureDate = new Date(departure);
     var matchingFlights = flights.filter(flight => {
         const flightDepartureDate = new Date(flight.departureDate);
@@ -131,6 +129,27 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
     }
     if (exactMatch.length !== 0) {
         matchingFlights = exactMatch;
+    }
+
+    if (tripTypeSelect.value === "roundtrip") {
+        const arrivalDate = new Date(arrival);
+        var matchingFlightsReturning = flights.filter(flight => {
+            const flightArrivalDate = new Date(flight.arrivalDate);
+            return flight.origin.toLowerCase() === destination &&
+                flight.destination.toLowerCase() === origin &&
+                Math.abs(flightArrivalDate - arrivalDate) <= 3 * 24 * 60 * 60 * 1000; // within 3 days
+        });
+        var exactMatchReturning = matchingFlightsReturning.filter(flight => {
+            return flight.arrivalDate === arrival;
+        });
+        if (exactMatchReturning.length === 0 && matchingFlightsReturning.length === 0) {
+            flightResult.innerHTML += "<p>No matching flights found for return trip.</p>";
+            return;
+        }
+        if (exactMatchReturning.length !== 0) {
+            matchingFlightsReturning = exactMatchReturning;
+        }
+        matchingFlights = matchingFlights.concat(matchingFlightsReturning);
     }
 
     let table = `
@@ -160,4 +179,51 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
     });
     table += "</table>";
     flightResult.innerHTML += table;
+    flightResult.innerHTML += '<button id="cart">Add to Cart</button>';
+    flightResult.innerHTML += '<br/><br/>';
+
+    const rows = flightResult.querySelectorAll("tr");
+    rows.forEach(row => {
+        row.addEventListener("click", function () {
+            if (this.classList.contains("selected")) {
+                this.classList.remove("selected");
+                this.style.backgroundColor = "";
+            } else {
+                rows.forEach(r => {
+                    r.classList.remove("selected");
+                    r.style.backgroundColor = "";
+                });
+                this.classList.add("selected");
+                this.style.backgroundColor = "grey";
+            }
+        });
+    });
+
+    var addToCartButton = document.getElementById("cart");
+    addToCartButton.addEventListener("click", function () {
+        const selectedRows = flightResult.querySelectorAll("tr.selected");
+        if ((tripTypeSelect.value === "oneway" && selectedRows.length !== 1) ||
+            (tripTypeSelect.value === "roundtrip" && selectedRows.length !== 2)) {
+            alert("Please select the correct number of flights.");
+            return;
+        }
+
+        const cart = [];
+        selectedRows.forEach(row => {
+            const cells = row.getElementsByTagName("td");
+            const flight = {
+                origin: cells[0].textContent,
+                destination: cells[1].textContent,
+                departureDate: cells[2].textContent,
+                arrivalDate: cells[3].textContent,
+                departureTime: cells[4].textContent,
+                arrivalTime: cells[5].textContent,
+                availableSeats: cells[6].textContent,
+                price: cells[7].textContent
+            };
+            cart.push(flight);
+        });
+
+        alert("Flights added to cart.");
+    });
 });
