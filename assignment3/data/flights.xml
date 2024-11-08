@@ -572,4 +572,15 @@
         <available-seats>75</available-seats>
         <price>230.00</price>
     </flight>
+    <flight>
+        <flight-id>TX-CA-053</flight-id>
+        <origin>Houston</origin>
+        <destination>Los Angeles</destination>
+        <departure-date>2024-09-01</departure-date>
+        <arrival-date>2024-09-01</arrival-date>
+        <departure-time>10:00</departure-time>
+        <arrival-time>13:00</arrival-time>
+        <available-seats>120</available-seats>
+        <price>250.00</price>
+    </flight>
 </flights>
