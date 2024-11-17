@@ -15,7 +15,8 @@ class Flight {
     departureTime,
     arrivalTime,
     availableSeats,
-    price = null
+    price = null,
+    id
   ) {
     this.origin = origin;
     this.destination = destination;
@@ -25,6 +26,7 @@ class Flight {
     this.arrivalTime = arrivalTime;
     this.availableSeats = availableSeats;
     this.price = price;
+    this.id = id;
   }
 }
 
@@ -51,6 +53,8 @@ fetch("./data/flights.xml")
       const availableSeats =
         flightNodes[i].getElementsByTagName("available-seats")[0].textContent;
       const price = flightNodes[i].getElementsByTagName("price")[0].textContent;
+      const id =
+        flightNodes[i].getElementsByTagName("flight-id")[0].textContent;
       const flight = new Flight(
         origin,
         destination,
@@ -59,9 +63,11 @@ fetch("./data/flights.xml")
         departureTime,
         arrivalTime,
         availableSeats,
-        price
+        price,
+        id
       );
       flights.push(flight);
+      console.log(flight);
     }
   });
 
@@ -209,6 +215,7 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
                 <th>Arrival Time</th>
                 <th>Available Seats</th>
                 <th>Price</th>
+                <th>ID</th>
             </tr>`;
   matchingFlights.forEach((flight) => {
     table += `
@@ -221,6 +228,7 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
                 <td>${flight.arrivalTime}</td>
                 <td>${flight.availableSeats}</td>
                 <td>${flight.price}</td>
+                <td>${flight.id}</td>
             </tr>`;
   });
   table += "</table>";
@@ -268,6 +276,7 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
         arrivalTime: cells[5].textContent,
         availableSeats: cells[6].textContent,
         price: cells[7].textContent,
+        id: cells[8].textContent,
       };
       cart.push(flight);
     });

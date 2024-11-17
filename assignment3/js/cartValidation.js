@@ -37,6 +37,7 @@ function displayCart() {
               <th>Arrival Time</th>
               <th>Available Seats</th>
               <th>Price</th>
+              <th>ID</th>
           </tr>`;
     table += `
       <tr>
@@ -48,6 +49,7 @@ function displayCart() {
           <td>${flight.arrivalTime}</td>
           <td>${flight.availableSeats}</td>
           <td>${flight.price}</td>
+          <td>${flight.id}</td>
       </tr>`;
     table += "</table>";
     singlePrice = parseFloat(flight.price);
@@ -192,16 +194,23 @@ function validateSingleEntry(firstName, lastName, dob, ssn) {
   return true;
 }
 
+displayCart();
+
 document.getElementById("cartForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const passengers = JSON.parse(localStorage.getItem("passengerData"));
-  if (!passengers) {
-    alert("Passenger Information not loaded!");
+  const cart = JSON.parse(localStorage.getItem("cartData"));
+  if (!passengers || !cart) {
+    alert("Cart/Passenger info is empty!");
     return;
   }
-  adults = parseInt(passengers.adults);
-  children = parseInt(passengers.children);
-  infants = parseInt(passengers.infants);
+  const adults = parseInt(passengers.adults);
+  const children = parseInt(passengers.children);
+  const infants = parseInt(passengers.infants);
+  let flightId = "";
+  cart.forEach((cart) => {
+    flightId = cart.id;
+  });
 
   if (validatePassengerForm(adults, children, infants)) {
     const pnr = Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -272,8 +281,33 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
     }
 
     bookingInfoContainer.innerHTML = bookingHtml;
+
+    // Delete from localStorage
+    localStorage.removeItem("cartData");
+    localStorage.removeItem("passengerData");
     alert("Flight booked succesfully!");
+    // bookFlight(flightId);
   }
 });
 
-displayCart();
+function bookFlight(flightId) {
+  // Send POST request to server using fetch
+  fetch("http://localhost:3000/book-flight", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Important to tell the server it's JSON
+    },
+    body: JSON.stringify({
+      flightId: flightId,
+    }),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Flight Book Call successful");
+      console.log(data); // Log server response
+      alert("Flight booked succesfully!");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
