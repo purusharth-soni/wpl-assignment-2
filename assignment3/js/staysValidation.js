@@ -1,124 +1,161 @@
-document.getElementById("staysForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+class Hotel {
+  constructor(
+    hotelId,
+    name,
+    city,
+    availability,
+    price
+  ) {
+    this.hotelId = hotelId;
+    this.name = name;
+    this.city = city;
+    this.availability = availability;
+    this.price = price;
+  }
+}
 
-    // Collect input values
-    const city = document.getElementById("city").value.trim();
-    const checkin = new Date(document.getElementById("checkin").value);
-    const checkout = new Date(document.getElementById("checkout").value);
-    const adults = parseInt(document.getElementById("adults").value, 10);
-    const children = parseInt(document.getElementById("children").value, 10);
-    const infants = parseInt(document.getElementById("infants").value, 10);
-    
-    const staysResult = document.getElementsByClassName("result")[0];
-    staysResult.innerHTML = ""; // Clear previous results
-    
-    // Validation for city
-    if (!isValidCity(city)) {
-        alert("Please enter a valid city from Texas or California.");
-        return;
+hotels = [];
+fetch("./data/hotels.json")
+.then((response) => response.json())
+.then((data) => {
+  data.forEach(hotel => {
+    const hotelId = hotel.hotelId;
+    const name = hotel.name;
+    const city = hotel.city;
+    const availability = hotel.availability;
+    const price = hotel.price;
+    hotels.push(new Hotel(hotelId, name, city, availability, price));
+  });
+});
+
+console.log(hotels);
+
+document.getElementById("staysForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  
+  // Collect input values
+  const city = document.getElementById("city").value.trim();
+  const checkin = new Date(document.getElementById("checkin").value);
+  const checkout = new Date(document.getElementById("checkout").value);
+  const adults = parseInt(document.getElementById("adults").value, 10);
+  const children = parseInt(document.getElementById("children").value, 10);
+  const infants = parseInt(document.getElementById("infants").value, 10);
+  
+  const staysResult = document.getElementsByClassName("result")[0];
+  staysResult.innerHTML = ""; // Clear previous results
+  
+  // Validation for city
+  if (!isValidCity(city)) {
+    alert("Please enter a valid city from Texas or California.");
+    return;
+  }
+  
+  // Validation for check-in and check-out dates
+  const minDate = new Date("2024-09-01");
+  const maxDate = new Date("2024-12-01");
+  if (
+    checkin < minDate ||
+    checkin > maxDate ||
+    checkout < minDate ||
+    checkout > maxDate ||
+    checkin >= checkout
+  )
+  {
+    alert(
+      "Check-in and check-out dates must be between September 1, 2024," +
+      " and December 1, 2024, and check-out must be after check-in."
+    );
+    return;
+  }
+  
+  // Calculate number of rooms
+  let totalGuests = adults + children;
+  let roomsNeeded = Math.ceil(totalGuests / 2);
+  
+  let filteredHotels = hotels.filter((hotel) => {
+    if (hotel.city.toLowerCase() != city.toLowerCase()) {
+      return false;
+    }
+    let allDatesAvailable = true;
+    for (let currentDate = new Date(checkin); currentDate < checkout; currentDate.setDate(currentDate.getDate() + 1)) {
+      const formattedDate = currentDate.toISOString().split('T')[0];
+      const availabilityEntry = hotel.availability.find(entry => entry.date === formattedDate);
+      if (!availabilityEntry || availabilityEntry.rooms < roomsNeeded) {
+        allDatesAvailable = false;
+        break;
+      }
+    }
+    return allDatesAvailable;
+  });
+  
+  if (filteredHotels.length === 0) {
+    staysResult.innerHTML = "No hotels available for the selected dates.";
+    return;
+  }
+  let table = `
+      <table>
+      <tr>
+      <th>Hotel ID</th>
+      <th>Hotel Name</th>
+      <th>City</th>
+      <th>Check-in Date</th>
+      <th>Check-out Date</th>
+      <th>Price per Night</th>
+      </tr>`;
+  
+  filteredHotels.forEach((hotel) => {
+    table += `
+        <tr>
+        <td>${hotel.hotelId}</td>
+        <td>${hotel.name}</td>
+        <td>${hotel.city}</td>
+        <td>${checkin.toDateString()}</td>
+        <td>${checkout.toDateString()}</td>
+        <td>${hotel.price}</td>
+        </tr>
+        `;
+  });
+  table += "</table>";
+  staysResult.innerHTML += table;
+  staysResult.innerHTML += '<button id="cart">Add to Cart</button>';
+  staysResult.innerHTML += "<br/><br/>";
+  
+  const rows = staysResult.querySelectorAll("tr:not(:first-child)");
+  rows.forEach((row) => {
+    row.addEventListener("click", function () {
+      if (this.classList.contains("selected")) {
+        this.classList.remove("selected");
+        this.style.backgroundColor = "";
+      } else {
+        this.classList.add("selected");
+        this.style.backgroundColor = "grey";
+      }
+    });
+  });
+  
+  var addToCartButton = document.getElementById("cart");
+  addToCartButton.addEventListener("click", function () {
+    var selectedRows = staysResult.querySelectorAll("tr.selected");
+    if (selectedRows.length !== 1) {
+      alert("Please select exactly one hotel to add to the cart.");
+      return;
     }
     
-    // Validation for check-in and check-out dates
-    const minDate = new Date("2024-09-01");
-    const maxDate = new Date("2024-12-01");
-    if (
-        checkin < minDate ||
-        checkin > maxDate ||
-        checkout < minDate ||
-        checkout > maxDate ||
-        checkin >= checkout
-    ) {
-        alert("Check-in and check-out dates must be between September 1, 2024," +
-            " and December 1, 2024, and check-out must be after check-in.");
-            return;
-        }
-	
-	// Calculate number of rooms
-    let totalGuests = adults + children;
-    let roomsNeeded = Math.ceil(totalGuests / 2);
-	
-	let hotelsData = [];
-	let filteredHotels = [];
-	
-	// Fetch the JSON file containing hotel data
-	fetch('./data/hotels.json')
-		.then(response => response.json())
-		.then(data => {
-			hotelsData = data; // Store the data in the variable
-			
-			hotelsData.forEach(hotel => {
-				
-				console.log(hotel.hotelId)
-				if(hotel.city.toLowerCase() != city.toLowerCase()){
-					return;
-				}
-				
-				let allDatesAvailable = true; // Assume all dates are available initially
-				let price = 0;
-				let cnt = 0;
-				
-				// Loop through each date from checkin to checkout
-				for (let currentDate = new Date(checkin); currentDate <= checkout; currentDate.setDate(currentDate.getDate() + 1)) {
-					const formattedDate = currentDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
-					
-					// Find availability entry for this date
-					const availabilityEntry = hotel.availability.find(entry => entry.date === formattedDate);
-					
-					// If any date doesn't have enough rooms, mark hotel as unavailable
-					if (!availabilityEntry || availabilityEntry.rooms < roomsNeeded) {
-						allDatesAvailable = false; // This hotel is unavailable for this range
-						break; // No need to check further dates
-					}
-					
-					price += availabilityEntry.price;
-					cnt++;
-				}
-				//(hotel-id, hotel name, city, check in date, check out date, and price per night
-				if(allDatesAvailable){
-					
-					price /= cnt;
-					
-					let validHotel = {"hotelId" : hotel.hotelId, "name" : hotel.name, "city" : hotel.city, "checkin" : checkin, "checkout" : checkout, "price" : price};
-					filteredHotels.push(validHotel);
-				}
-			})
-			
-			// Display filtered hotels
-			if (filteredHotels.length > 0) {
-				filteredHotels.forEach(hotel => {
-
-					staysResult.innerHTML += `
-						<div class="hotel">
-							<p><strong>Hotel ID:</strong> ${hotel.hotelId}</p>
-							<p><strong>Hotel Name:</strong> ${hotel.name}</p>
-							<p><strong>City:</strong> ${hotel.city}</p>
-							<p><strong>Check-in Date:</strong> ${checkin.toDateString()}</p>
-							<p><strong>Check-out Date:</strong> ${checkout.toDateString()}</p>
-							<p><strong>Price per Night:</strong> ${hotel.price}</p>
-							<button onclick="addToCart(${JSON.stringify(hotel)}, '${checkin}', '${checkout}', ${adults}, ${children})">Add to Cart</button>
-						</div>
-					`;
-				});
-			} else {
-				staysResult.innerHTML = "<p>No hotels available for the selected criteria.</p>";
-			}
-		})
-		.catch(error => console.error("Error fetching hotel data:", error));
-
-        
-    // Display information
-    //staysResult.innerHTML = `
-    //    <p>Booking Information:<br/>
-    //    City: ${city}<br/>
-    //    Check-in: ${checkin.toDateString()}<br/>
-    //    Check-out: ${checkout.toDateString()}<br/>
-    //    Number of Adults: ${adults}<br/>
-    //    Number of Children: ${children}<br/>
-    //    Number of Infants: ${infants}<br/>
-    //    Rooms Needed: ${roomsNeeded}</p>
-    // `;
-        
-    // Clear form inputs after successful search
-    document.getElementById("staysForm").reset();
+    const cart = [];
+    selectedRows.forEach((row) => {
+      const cells = row.getElementsByTagName("td");
+      const hotel = {
+        hotelId: cells[0].innerText,
+        name: cells[1].innerText,
+        city: cells[2].innerText,
+        checkin: cells[3].innerText,
+        checkout: cells[4].innerText,
+        price: cells[5].innerText,
+        numRooms: roomsNeeded
+      }
+      cart.push(hotel);
     });
-    
+    localStorage.setItem("staysCart", JSON.stringify(cart));
+    alert("Hotel added to cart successfully.");
+  });
+});

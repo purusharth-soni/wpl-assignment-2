@@ -3,36 +3,31 @@
     "hotelId": "001",
     "name": "Austin Luxury Inn",
     "city": "Austin",
+    "price": 150,
     "availability": [
       {
         "date": "2024-09-01",
-        "rooms": 5,
-        "price": 150
+        "rooms": 5
       },
 	  {
         "date": "2024-09-02",
-        "rooms": 3,
-        "price": 200
+        "rooms": 3
       },
       {
         "date": "2024-09-10",
-        "rooms": 3,
-        "price": 150
+        "rooms": 3
       },
       {
         "date": "2024-09-15",
-        "rooms": 4,
-        "price": 150
+        "rooms": 4
       },
       {
         "date": "2024-10-05",
-        "rooms": 2,
-        "price": 160
+        "rooms": 2
       },
       {
         "date": "2024-11-20",
-        "rooms": 1,
-        "price": 160
+        "rooms": 1
       }
     ]
   },
@@ -40,31 +35,27 @@
     "hotelId": "002",
     "name": "Sunset Beach Resort",
     "city": "San Diego",
+    "price": 200,
     "availability": [
       {
         "date": "2024-09-04",
-        "rooms": 3,
-        "price": 180
+        "rooms": 3
       },
       {
         "date": "2024-09-18",
-        "rooms": 2,
-        "price": 180
+        "rooms": 2
       },
       {
         "date": "2024-10-10",
-        "rooms": 5,
-        "price": 190
+        "rooms": 5
       },
       {
         "date": "2024-10-25",
-        "rooms": 4,
-        "price": 190
+        "rooms": 4
       },
       {
         "date": "2024-11-15",
-        "rooms": 3,
-        "price": 180
+        "rooms": 3
       }
     ]
   },
@@ -72,31 +63,27 @@
     "hotelId": "003",
     "name": "Downtown Elegance",
     "city": "Dallas",
+    "price": 120,
     "availability": [
       {
         "date": "2024-09-02",
-        "rooms": 10,
-        "price": 120
+        "rooms": 10
       },
       {
         "date": "2024-09-25",
-        "rooms": 7,
-        "price": 120
+        "rooms": 7
       },
       {
         "date": "2024-10-13",
-        "rooms": 5,
-        "price": 130
+        "rooms": 5
       },
       {
         "date": "2024-11-03",
-        "rooms": 8,
-        "price": 130
+        "rooms": 8
       },
       {
         "date": "2024-11-22",
-        "rooms": 6,
-        "price": 130
+        "rooms": 6
       }
     ]
   },
@@ -104,31 +91,27 @@
     "hotelId": "004",
     "name": "Texas Grand Hotel",
     "city": "Houston",
+    "price": 200,
     "availability": [
       {
         "date": "2024-09-03",
-        "rooms": 6,
-        "price": 200
+        "rooms": 6
       },
       {
         "date": "2024-09-20",
-        "rooms": 4,
-        "price": 200
+        "rooms": 4
       },
       {
         "date": "2024-10-01",
-        "rooms": 3,
-        "price": 210
+        "rooms": 3
       },
       {
         "date": "2024-10-30",
-        "rooms": 7,
-        "price": 210
+        "rooms": 7
       },
       {
         "date": "2024-11-10",
-        "rooms": 5,
-        "price": 210
+        "rooms": 5
       }
     ]
   },
@@ -136,31 +119,27 @@
     "hotelId": "005",
     "name": "Pacific View Hotel",
     "city": "Los Angeles",
+    "price": 250,
     "availability": [
       {
         "date": "2024-09-05",
-        "rooms": 8,
-        "price": 250
+        "rooms": 8
       },
       {
         "date": "2024-09-28",
-        "rooms": 4,
-        "price": 250
+        "rooms": 4
       },
       {
         "date": "2024-10-08",
-        "rooms": 6,
-        "price": 260
+        "rooms": 6
       },
       {
         "date": "2024-10-18",
-        "rooms": 5,
-        "price": 260
+        "rooms": 5
       },
       {
         "date": "2024-11-25",
-        "rooms": 2,
-        "price": 250
+        "rooms": 2
       }
     ]
   },
@@ -168,31 +147,27 @@
     "hotelId": "006",
     "name": "Mountain Peak Hotel",
     "city": "Denver",
+    "price": 220,
     "availability": [
       {
         "date": "2024-09-01",
-        "rooms": 4,
-        "price": 220
+        "rooms": 4
       },
       {
         "date": "2024-09-12",
-        "rooms": 3,
-        "price": 220
+        "rooms": 3
       },
       {
         "date": "2024-10-02",
-        "rooms": 5,
-        "price": 230
+        "rooms": 5
       },
       {
         "date": "2024-10-14",
-        "rooms": 2,
-        "price": 230
+        "rooms": 2
       },
       {
         "date": "2024-11-22",
-        "rooms": 1,
-        "price": 240
+        "rooms": 1
       }
     ]
   },
@@ -200,31 +175,27 @@
     "hotelId": "007",
     "name": "Riverside Retreat",
     "city": "Portland",
+    "price": 150,
     "availability": [
       {
         "date": "2024-09-06",
-        "rooms": 8,
-        "price": 150
+        "rooms": 8
       },
       {
         "date": "2024-09-19",
-        "rooms": 6,
-        "price": 150
+        "rooms": 6
       },
       {
         "date": "2024-10-11",
-        "rooms": 4,
-        "price": 160
+        "rooms": 4
       },
       {
         "date": "2024-10-22",
-        "rooms": 3,
-        "price": 160
+        "rooms": 3
       },
       {
         "date": "2024-11-14",
-        "rooms": 5,
-        "price": 150
+        "rooms": 5
       }
     ]
   },
@@ -232,31 +203,27 @@
     "hotelId": "008",
     "name": "Lakeside Comfort",
     "city": "Lake Tahoe",
+    "price": 180,
     "availability": [
       {
         "date": "2024-09-02",
-        "rooms": 7,
-        "price": 180
+        "rooms": 7
       },
       {
         "date": "2024-09-14",
-        "rooms": 5,
-        "price": 180
+        "rooms": 5
       },
       {
         "date": "2024-09-28",
-        "rooms": 3,
-        "price": 190
+        "rooms": 3
       },
       {
         "date": "2024-10-15",
-        "rooms": 6,
-        "price": 190
+        "rooms": 6
       },
       {
         "date": "2024-11-17",
-        "rooms": 2,
-        "price": 200
+        "rooms": 2
       }
     ]
   },
@@ -264,31 +231,27 @@
     "hotelId": "009",
     "name": "Ocean Breeze Hotel",
     "city": "Santa Monica",
+    "price": 200,
     "availability": [
       {
         "date": "2024-09-04",
-        "rooms": 10,
-        "price": 200
+        "rooms": 10
       },
       {
         "date": "2024-09-18",
-        "rooms": 8,
-        "price": 200
+        "rooms": 8
       },
       {
         "date": "2024-10-03",
-        "rooms": 4,
-        "price": 210
+        "rooms": 4
       },
       {
         "date": "2024-10-20",
-        "rooms": 5,
-        "price": 210
+        "rooms": 5
       },
       {
         "date": "2024-11-05",
-        "rooms": 3,
-        "price": 220
+        "rooms": 3
       }
     ]
   },
@@ -296,31 +259,27 @@
     "hotelId": "010",
     "name": "Valley View Resort",
     "city": "Sedona",
+    "price": 190,
     "availability": [
       {
         "date": "2024-09-08",
-        "rooms": 6,
-        "price": 190
+        "rooms": 6
       },
       {
         "date": "2024-09-22",
-        "rooms": 3,
-        "price": 190
+        "rooms": 3
       },
       {
         "date": "2024-10-05",
-        "rooms": 7,
-        "price": 200
+        "rooms": 7
       },
       {
         "date": "2024-10-18",
-        "rooms": 4,
-        "price": 200
+        "rooms": 4
       },
       {
         "date": "2024-11-12",
-        "rooms": 2,
-        "price": 210
+        "rooms": 2
       }
     ]
   },
@@ -328,31 +287,27 @@
     "hotelId": "011",
     "name": "Desert Oasis",
     "city": "Phoenix",
+    "price": 170,
     "availability": [
       {
         "date": "2024-09-10",
-        "rooms": 5,
-        "price": 170
+        "rooms": 5
       },
       {
         "date": "2024-09-26",
-        "rooms": 3,
-        "price": 170
+        "rooms": 3
       },
       {
         "date": "2024-10-13",
-        "rooms": 4,
-        "price": 180
+        "rooms": 4
       },
       {
         "date": "2024-10-28",
-        "rooms": 2,
-        "price": 180
+        "rooms": 2
       },
       {
         "date": "2024-11-17",
-        "rooms": 6,
-        "price": 170
+        "rooms": 6
       }
     ]
   },
@@ -360,31 +315,27 @@
     "hotelId": "012",
     "name": "Mountain View Lodge",
     "city": "Flagstaff",
+    "price": 160,
     "availability": [
       {
         "date": "2024-09-07",
-        "rooms": 4,
-        "price": 160
+        "rooms": 4
       },
       {
         "date": "2024-09-21",
-        "rooms": 2,
-        "price": 160
+        "rooms": 2
       },
       {
         "date": "2024-10-02",
-        "rooms": 3,
-        "price": 170
+        "rooms": 3
       },
       {
         "date": "2024-10-17",
-        "rooms": 6,
-        "price": 170
+        "rooms": 6
       },
       {
         "date": "2024-11-09",
-        "rooms": 5,
-        "price": 180
+        "rooms": 5
       }
     ]
   },
@@ -392,31 +343,27 @@
     "hotelId": "013",
     "name": "City Lights Hotel",
     "city": "Austin",
+    "price": 150,
     "availability": [
       {
         "date": "2024-09-11",
-        "rooms": 8,
-        "price": 150
+        "rooms": 8
       },
       {
         "date": "2024-09-25",
-        "rooms": 5,
-        "price": 150
+        "rooms": 5
       },
       {
         "date": "2024-10-06",
-        "rooms": 4,
-        "price": 160
+        "rooms": 4
       },
       {
         "date": "2024-10-19",
-        "rooms": 3,
-        "price": 160
+        "rooms": 3
       },
       {
         "date": "2024-11-21",
-        "rooms": 6,
-        "price": 150
+        "rooms": 6
       }
     ]
   },
@@ -424,31 +371,27 @@
     "hotelId": "014",
     "name": "Seaside Retreat",
     "city": "San Francisco",
+    "price": 200,
     "availability": [
       {
         "date": "2024-09-03",
-        "rooms": 7,
-        "price": 200
+        "rooms": 7
       },
       {
         "date": "2024-09-19",
-        "rooms": 5,
-        "price": 200
+        "rooms": 5
       },
       {
         "date": "2024-10-05",
-        "rooms": 6,
-        "price": 210
+        "rooms": 6
       },
       {
         "date": "2024-10-18",
-        "rooms": 4,
-        "price": 210
+        "rooms": 4
       },
       {
         "date": "2024-11-02",
-        "rooms": 3,
-        "price": 220
+        "rooms": 3
       }
     ]
   },
@@ -456,31 +399,27 @@
     "hotelId": "015",
     "name": "Golden Gate Hotel",
     "city": "San Francisco",
+    "price": 250,
     "availability": [
       {
         "date": "2024-09-09",
-        "rooms": 3,
-        "price": 250
+        "rooms": 3
       },
       {
         "date": "2024-09-22",
-        "rooms": 4,
-        "price": 250
+        "rooms": 4
       },
       {
         "date": "2024-10-01",
-        "rooms": 2,
-        "price": 260
+        "rooms": 2
       },
       {
         "date": "2024-10-15",
-        "rooms": 6,
-        "price": 260
+        "rooms": 6
       },
       {
         "date": "2024-11-08",
-        "rooms": 5,
-        "price": 250
+        "rooms": 5
       }
     ]
   },
@@ -488,31 +427,27 @@
     "hotelId": "016",
     "name": "Bay Area Hotel",
     "city": "Oakland",
+    "price": 220,
     "availability": [
       {
         "date": "2024-09-13",
-        "rooms": 6,
-        "price": 220
+        "rooms": 6
       },
       {
         "date": "2024-09-27",
-        "rooms": 4,
-        "price": 220
+        "rooms": 4
       },
       {
         "date": "2024-10-12",
-        "rooms": 5,
-        "price": 230
+        "rooms": 5
       },
       {
         "date": "2024-10-24",
-        "rooms": 3,
-        "price": 230
+        "rooms": 3
       },
       {
         "date": "2024-11-03",
-        "rooms": 4,
-        "price": 240
+        "rooms": 4
       }
     ]
   },
@@ -520,31 +455,27 @@
     "hotelId": "017",
     "name": "Skyline Hotel",
     "city": "New York",
+    "price": 300,
     "availability": [
       {
         "date": "2024-09-02",
-        "rooms": 10,
-        "price": 300
+        "rooms": 10
       },
       {
         "date": "2024-09-18",
-        "rooms": 6,
-        "price": 300
+        "rooms": 6
       },
       {
         "date": "2024-10-07",
-        "rooms": 5,
-        "price": 310
+        "rooms": 5
       },
       {
         "date": "2024-10-21",
-        "rooms": 4,
-        "price": 310
+        "rooms": 4
       },
       {
         "date": "2024-11-10",
-        "rooms": 3,
-        "price": 320
+        "rooms": 3
       }
     ]
   },
@@ -552,31 +483,27 @@
     "hotelId": "018",
     "name": "Sunset Resort",
     "city": "Miami",
+    "price": 230,
     "availability": [
       {
         "date": "2024-09-04",
-        "rooms": 5,
-        "price": 230
+        "rooms": 5
       },
       {
         "date": "2024-09-17",
-        "rooms": 4,
-        "price": 230
+        "rooms": 4
       },
       {
         "date": "2024-10-08",
-        "rooms": 6,
-        "price": 240
+        "rooms": 6
       },
       {
         "date": "2024-10-23",
-        "rooms": 3,
-        "price": 240
+        "rooms": 3
       },
       {
         "date": "2024-11-15",
-        "rooms": 2,
-        "price": 250
+        "rooms": 2
       }
     ]
   },
@@ -584,31 +511,27 @@
     "hotelId": "019",
     "name": "Palm Grove Inn",
     "city": "Los Angeles",
+    "price": 210,
     "availability": [
       {
         "date": "2024-09-05",
-        "rooms": 7,
-        "price": 210
+        "rooms": 7
       },
       {
         "date": "2024-09-22",
-        "rooms": 4,
-        "price": 210
+        "rooms": 4
       },
       {
         "date": "2024-10-10",
-        "rooms": 5,
-        "price": 220
+        "rooms": 5
       },
       {
         "date": "2024-10-30",
-        "rooms": 3,
-        "price": 220
+        "rooms": 3
       },
       {
         "date": "2024-11-13",
-        "rooms": 6,
-        "price": 230
+        "rooms": 6
       }
     ]
   },
@@ -616,31 +539,27 @@
     "hotelId": "020",
     "name": "Luxury Hills Resort",
     "city": "Aspen",
+    "price": 400,
     "availability": [
       {
         "date": "2024-09-03",
-        "rooms": 4,
-        "price": 400
+        "rooms": 4
       },
       {
         "date": "2024-09-16",
-        "rooms": 2,
-        "price": 400
+        "rooms": 2
       },
       {
         "date": "2024-10-05",
-        "rooms": 3,
-        "price": 420
+        "rooms": 3
       },
       {
         "date": "2024-10-19",
-        "rooms": 6,
-        "price": 420
+        "rooms": 6
       },
       {
         "date": "2024-11-06",
-        "rooms": 4,
-        "price": 430
+        "rooms": 4
       }
     ]
   }
