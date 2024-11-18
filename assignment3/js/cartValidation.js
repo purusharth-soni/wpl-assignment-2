@@ -29,6 +29,16 @@ function displayCart() {
   const totalAdults = parseInt(passengers.adults);
   const totalChildren = parseInt(passengers.children);
   const totalInfants = parseInt(passengers.infants);
+
+  flightInfoContainer.innerHTML = getFlightAndPriceHTML(cart, passengers);
+
+  displayPassengerForm(totalAdults, totalChildren, totalInfants);
+}
+
+function getFlightAndPriceHTML(cart, passengers) {
+  const totalAdults = parseInt(passengers.adults);
+  const totalChildren = parseInt(passengers.children);
+  const totalInfants = parseInt(passengers.infants);
   let adultPrice = 0,
     childrenPrice = 0,
     infantPrice = 0;
@@ -75,9 +85,7 @@ function displayCart() {
     Total: $${adultPrice + childrenPrice + infantPrice}<br>
     </p>
     `;
-  flightInfoContainer.innerHTML = table;
-
-  displayPassengerForm(totalAdults, totalChildren, totalInfants);
+  return table;
 }
 
 function displayStaysCart() {
@@ -366,7 +374,8 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
       infantsData.push(new Person(firstName, lastName, ssn, dob));
     }
 
-    bookingInfoContainer.innerHTML = bookingHtml;
+    bookingInfoContainer.innerHTML =
+      bookingHtml + getFlightAndPriceHTML(cart, passengers);
 
     // Book Flight POST call
     const flightsData = [];
@@ -393,8 +402,12 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
       },
     };
 
+    // Server API Calls
     bookFlight(ids, totalAdults + totalChildren + totalInfants);
     saveBooking(bookingData);
+    flightInfoContainer.innerHTML = "";
+    localStorage.removeItem("cartData");
+    localStorage.removeItem("passengerData");
     alert("Flight booked succesfully!");
 
     // Book Stays POST call

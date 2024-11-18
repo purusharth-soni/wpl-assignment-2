@@ -67,7 +67,6 @@ fetch("./data/flights.xml")
         id
       );
       flights.push(flight);
-      console.log(flight);
     }
   });
 
