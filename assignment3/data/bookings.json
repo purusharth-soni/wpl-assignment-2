@@ -1,0 +1,54 @@
+[
+  {
+    "pnr": "WZRM7F",
+    "flights": [
+      {
+        "flightId": "TX-CA-001",
+        "origin": "Houston",
+        "destination": "Los Angeles",
+        "departureDate": "2024-09-01",
+        "arrivalDate": "2024-09-01",
+        "departureTime": "09:00",
+        "arrivalTime": "12:00"
+      }
+    ],
+    "passengers": {
+      "adults": [
+        {
+          "firstName": "Purusharth",
+          "lastName": "Soni",
+          "ssn": "123-45-6789",
+          "dateOfBirth": "0001-01-01"
+        }
+      ],
+      "children": [],
+      "infants": []
+    }
+  },
+  {
+    "pnr": "0H1CSG",
+    "flights": [
+      {
+        "flightId": "TX-CA-001",
+        "origin": "Houston",
+        "destination": "Los Angeles",
+        "departureDate": "2024-09-01",
+        "arrivalDate": "2024-09-01",
+        "departureTime": "09:00",
+        "arrivalTime": "12:00"
+      }
+    ],
+    "passengers": {
+      "adults": [
+        {
+          "firstName": "puru",
+          "lastName": "soni",
+          "ssn": "123-45-6789",
+          "dateOfBirth": "0001-01-01"
+        }
+      ],
+      "children": [],
+      "infants": []
+    }
+  }
+]

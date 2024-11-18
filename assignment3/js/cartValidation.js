@@ -196,6 +196,15 @@ function validateSingleEntry(firstName, lastName, dob, ssn) {
 
 displayCart();
 
+class Person {
+  constructor(firstName, lastName, ssn, dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.ssn = ssn;
+    this.dateOfBirth = dateOfBirth;
+  }
+}
+
 document.getElementById("cartForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const passengers = JSON.parse(localStorage.getItem("passengerData"));
@@ -204,25 +213,24 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
     alert("Cart/Passenger info is empty!");
     return;
   }
-  const adults = parseInt(passengers.adults);
-  const children = parseInt(passengers.children);
-  const infants = parseInt(passengers.infants);
-  let flightId = "";
-  cart.forEach((cart) => {
-    flightId = cart.id;
-  });
+  const totalAdults = parseInt(passengers.adults);
+  const totalChildren = parseInt(passengers.children);
+  const totalInfants = parseInt(passengers.infants);
+  const adultsData = [];
+  const childrenData = [];
+  const infantsData = [];
 
-  if (validatePassengerForm(adults, children, infants)) {
+  if (validatePassengerForm(totalAdults, totalChildren, totalInfants)) {
     const pnr = Math.random().toString(36).substring(2, 8).toUpperCase();
     console.log(`Passenger info saved - ${pnr}`);
     bookingHtml = `<h3>Booking Information</h3><p>Booking Number: ${pnr}</p>`;
 
     // display adults
-    for (let i = 1; i <= adults; i++) {
+    for (let i = 1; i <= totalAdults; i++) {
       if (i == 1) {
         bookingHtml += "<p>";
       }
-      if (i == adults) {
+      if (i == totalAdults) {
         bookingHtml += "</p>";
       }
       const firstName = document.getElementById(`fname_a_${i}`).value;
@@ -236,14 +244,15 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
       SSN: ${ssn}<br>
       Date of Birth: ${dob}<br>
       `;
+      adultsData.push(new Person(firstName, lastName, ssn, dob));
     }
 
     // display children
-    for (let i = 1; i <= children; i++) {
+    for (let i = 1; i <= totalChildren; i++) {
       if (i == 1) {
         bookingHtml += "<p>";
       }
-      if (i == adults) {
+      if (i == totalAdults) {
         bookingHtml += "</p>";
       }
       const firstName = document.getElementById(`fname_c_${i}`).value;
@@ -257,14 +266,15 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
       SSN: ${ssn}<br>
       Date of Birth: ${dob}<br>
       `;
+      childrenData.push(new Person(firstName, lastName, ssn, dob));
     }
 
     // display infants
-    for (let i = 1; i <= infants; i++) {
+    for (let i = 1; i <= totalInfants; i++) {
       if (i == 1) {
         bookingHtml += "<p>";
       }
-      if (i == adults) {
+      if (i == totalAdults) {
         bookingHtml += "</p>";
       }
       const firstName = document.getElementById(`fname_i_${i}`).value;
@@ -278,19 +288,43 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
       SSN: ${ssn}<br>
       Date of Birth: ${dob}<br>
       `;
+      infantsData.push(new Person(firstName, lastName, ssn, dob));
     }
 
     bookingInfoContainer.innerHTML = bookingHtml;
 
-    // Delete from localStorage
-    localStorage.removeItem("cartData");
-    localStorage.removeItem("passengerData");
+    // Book Flight POST call
+    const flightsData = [];
+    const ids = [];
+    cart.forEach((flight) => {
+      ids.push(flight.id);
+      flightsData.push({
+        flightId: flight.id,
+        origin: flight.origin,
+        destination: flight.destination,
+        departureDate: flight.departureDate,
+        arrivalDate: flight.arrivalDate,
+        departureTime: flight.departureTime,
+        arrivalTime: flight.arrivalTime,
+      });
+    });
+    const bookingData = {
+      pnr: pnr,
+      flights: flightsData,
+      passengers: {
+        adults: adultsData,
+        children: childrenData,
+        infants: infantsData,
+      },
+    };
+
+    bookFlight(ids, totalAdults + totalChildren + totalInfants);
+    saveBooking(bookingData);
     alert("Flight booked succesfully!");
-    // bookFlight(flightId);
   }
 });
 
-function bookFlight(flightId) {
+function bookFlight(ids, numPassengers) {
   // Send POST request to server using fetch
   fetch("http://localhost:3000/book-flight", {
     method: "POST",
@@ -298,7 +332,8 @@ function bookFlight(flightId) {
       "Content-Type": "application/json", // Important to tell the server it's JSON
     },
     body: JSON.stringify({
-      flightId: flightId,
+      ids: ids,
+      count: numPassengers,
     }),
   })
     .then((response) => response.text())
@@ -306,6 +341,25 @@ function bookFlight(flightId) {
       console.log("Flight Book Call successful");
       console.log(data); // Log server response
       alert("Flight booked succesfully!");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function saveBooking(bookingData) {
+  // Send POST request to server using fetch
+  fetch("http://localhost:3000/save-booking", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Important to tell the server it's JSON
+    },
+    body: JSON.stringify(bookingData),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log(data); // Log server response
+      alert("Booking info saved succesfully!");
     })
     .catch((error) => {
       console.error("Error:", error);
