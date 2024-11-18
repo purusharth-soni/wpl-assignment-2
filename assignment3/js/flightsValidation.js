@@ -162,8 +162,8 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
     return (
       flight.origin.toLowerCase() === origin &&
       flight.destination.toLowerCase() === destination &&
-      Math.abs(flightDepartureDate - departureDate) <= 3 * 24 * 60 * 60 * 1000
-    ); // within 3 days
+      Math.abs(flightDepartureDate - departureDate) <= 3 * 24 * 60 * 60 * 1000 // within 3 days
+    );
   });
   var exactMatch = matchingFlights.filter((flight) => {
     return flight.departureDate === departure;
@@ -243,10 +243,6 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
         this.classList.remove("selected");
         this.style.backgroundColor = "";
       } else {
-        rows.forEach((r) => {
-          r.classList.remove("selected");
-          r.style.backgroundColor = "";
-        });
         this.classList.add("selected");
         this.style.backgroundColor = "grey";
       }

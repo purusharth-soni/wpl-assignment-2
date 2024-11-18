@@ -156,8 +156,8 @@
     </flight>
     <flight>
         <flight-id>TX-CA-015</flight-id>
-        <origin>San Antonio</origin>
-        <destination>San Diego</destination>
+        <origin>San Diego</origin>
+        <destination>San Antonio</destination>
         <departure-date>2024-11-03</departure-date>
         <arrival-date>2024-11-03</arrival-date>
         <departure-time>08:00</departure-time>
