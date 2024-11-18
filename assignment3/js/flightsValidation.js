@@ -236,7 +236,7 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
   flightResult.innerHTML += '<button id="cart">Add to Cart</button>';
   flightResult.innerHTML += "<br/><br/>";
 
-  const rows = flightResult.querySelectorAll("tr");
+  const rows = flightResult.querySelectorAll("tr:not(:first-child)");
   rows.forEach((row) => {
     row.addEventListener("click", function () {
       if (this.classList.contains("selected")) {
