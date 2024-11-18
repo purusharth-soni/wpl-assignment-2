@@ -1,9 +1,8 @@
 const flightInfoContainer = document.getElementsByClassName(
   "flightInfoContainer"
 )[0];
-const stayInfoContainer = document.getElementsByClassName(
-  "stayInfoContainer"
-)[0];
+const stayInfoContainer =
+  document.getElementsByClassName("stayInfoContainer")[0];
 const adultInfoContainer =
   document.getElementsByClassName("adultInfoContainer")[0];
 const childrenInfoContainer = document.getElementsByClassName(
@@ -21,7 +20,7 @@ var f = 0;
 function displayCart() {
   const cart = JSON.parse(localStorage.getItem("cartData"));
   const passengers = JSON.parse(localStorage.getItem("passengerData"));
-  console.log(cart)
+  console.log(cart);
   if (!cart || !passengers) {
     flightInfoContainer.innerHTML = "<p>Cart is Empty!</p>";
     return;
@@ -128,7 +127,8 @@ function displayStaysCart() {
       </tr>`;
     singlePrice = parseFloat(stay.price);
     adultPrice += totalAdults * singlePrice;
-    childrenPrice += totalAdults * singlePrice;
+    childrenPrice += totalChildren * singlePrice;
+    console.log("Children - ", totalChildren);
     infantPrice = 0;
     //infantPrice += totalInfants * singlePrice * 0.1;
   });
@@ -136,16 +136,15 @@ function displayStaysCart() {
   table += `
     </table>
     <p>Prices -</p>
-    <p>Adult: $${singlePrice}<br>
-    Children: $${singlePrice}<br>
+    <p>Adult: $${adultPrice}<br>
+    Children: $${childrenPrice}<br>
     Infant: $${infantPrice}<br>
     Total: $${adultPrice + childrenPrice + infantPrice}<br>
     </p>
     `;
-    stayInfoContainer.innerHTML = table;
+  stayInfoContainer.innerHTML = table;
 
-  if(!f)
-    displayPassengerForm(totalAdults, totalChildren, totalInfants);
+  if (!f) displayPassengerForm(totalAdults, totalChildren, totalInfants);
 }
 
 function displayPassengerForm(adults, children, infants) {
@@ -304,9 +303,9 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
   const infantsData = [];
 
   if (validatePassengerForm(totalAdults, totalChildren, totalInfants)) {
-    const pnr = Math.random().toString(36).substring(2, 8).toUpperCase();
-    console.log(`Passenger info saved - ${pnr}`);
-    bookingHtml = `<h3>Booking Information</h3><p>Booking Number: ${pnr}</p>`;
+    const bookingId = Math.random().toString(36).substring(2, 8).toUpperCase();
+    console.log(`Passenger info saved - ${bookingId}`);
+    bookingHtml = `<h3>Booking Information</h3><p>Booking Number: ${bookingId}</p>`;
 
     // display adults
     for (let i = 1; i <= totalAdults; i++) {
@@ -393,7 +392,7 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
       });
     });
     const bookingData = {
-      pnr: pnr,
+      bookingId: bookingId,
       flights: flightsData,
       passengers: {
         adults: adultsData,
@@ -483,7 +482,7 @@ function saveBooking(bookingData) {
 
 function bookStay(staysData) {
   // Send POST request to server using fetch
-  console.log(staysData)
+  console.log(staysData);
   fetch("http://localhost:3000/book-stay", {
     method: "POST",
     headers: {

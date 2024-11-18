@@ -161,7 +161,9 @@ document.getElementById("flightForm").addEventListener("submit", function (e) {
     return (
       flight.origin.toLowerCase() === origin &&
       flight.destination.toLowerCase() === destination &&
-      Math.abs(flightDepartureDate - departureDate) <= 3 * 24 * 60 * 60 * 1000 // within 3 days
+      Math.abs(flightDepartureDate - departureDate) <=
+        3 * 24 * 60 * 60 * 1000 && // within 3 days
+      parseInt(flight.availableSeats) > 0 // availables seats > 0
     );
   });
   var exactMatch = matchingFlights.filter((flight) => {
