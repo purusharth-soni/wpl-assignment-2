@@ -27,7 +27,7 @@ function displayCart() {
     childrenPrice = 0,
     infantPrice = 0;
   let table = `
-  <h3>Selected Flight</h3>
+  <h3>Selected Flight(s)</h3>
       <table>
           <tr>
               <th>Origin</th>
@@ -346,7 +346,6 @@ function bookFlight(ids, numPassengers) {
     .then((data) => {
       console.log("Flight Book Call successful");
       console.log(data); // Log server response
-      alert("Flight booked succesfully!");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -365,7 +364,6 @@ function saveBooking(bookingData) {
     .then((response) => response.text())
     .then((data) => {
       console.log(data); // Log server response
-      alert("Booking info saved succesfully!");
     })
     .catch((error) => {
       console.error("Error:", error);
