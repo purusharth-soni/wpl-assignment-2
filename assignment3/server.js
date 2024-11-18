@@ -10,6 +10,8 @@ app.use(express.json());
 // File paths
 const flightsXML = "./data/flights.xml";
 const bookingsJSON = "./data/bookings.json";
+const staysXML = "./data/stays.xml";
+const staysJSON = "./data/hotels.json";
 
 // Endpoind to update available seats
 app.post("/book-flight", (req, res) => {
@@ -90,6 +92,126 @@ app.post("/save-booking", (req, res) => {
         res.status(200).send("Booking successfully saved");
       }
     );
+  });
+});
+
+// Endpoind to update available rooms
+app.post("/book-stay", (req, res) => {
+  //console.log("Request: " + req.body);
+  const staysData = req.body;
+
+  console.log(staysData)
+  // Read and update JSON file
+  fs.readFile(staysJSON, "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading JSON file:", err);
+    return res.status(500).send("Error reading JSON file");
+  }
+  
+  let hotels = JSON.parse(data);
+  
+  staysData.forEach((stay) => {
+    const { staysId, checkIn, checkOut, rooms } = stay;
+
+    // Find the corresponding hotel
+    const hotel = hotels.find((h) => h.hotelId === staysId);
+
+  
+    if (!hotel) {
+      console.error(`Hotel with ID ${staysId} not found.`);
+      return;
+    }
+
+    // Convert check-in and check-out dates to Date objects
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+
+    console.log("found hotel : " + hotel)
+
+    for (let d = new Date(checkInDate); d <= checkOutDate; d.setDate(d.getDate() + 1)) {
+      const dateStr = d.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
+
+      // Find the availability entry for the current date
+      const availabilityEntry = hotel.availability.find((a) => a.date === dateStr);
+      // Decrease the room count
+      availabilityEntry.rooms -= rooms;
+    }
+  });
+
+  // Write updated JSON back to file
+  fs.writeFile(staysJSON, JSON.stringify(hotels, null, 2), (writeErr) => {
+    if (writeErr) {
+      console.error("Error writing JSON file:", writeErr);
+      return res.status(500).send("Error writing JSON file");
+    } 
+  });
+});
+});
+
+// Endpoint to save stay booking
+app.post("/save-stay-booking", (req, res) => {
+
+  const bookingData = req.body;
+  //console.log(bookingData)
+  const staysData = bookingData['stays'];
+  // Read the XML file
+  fs.readFile(staysXML, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading XML file:", err);
+      return callback(err);
+    }
+
+    // Parse the XML data
+    xml2js.parseString(data, (parseErr, result) => {
+      if (parseErr) {
+        console.error("Error parsing XML:", parseErr);
+        return callback(parseErr);
+      }
+
+      // Ensure "bookings" and "booking" array exist
+      if (!result.bookings) {
+        result.bookings = {};
+      }
+
+      // console.log(result.bookings);
+      if (!result.bookings.booking) {
+        result.bookings.booking = [];
+      }
+
+      console.log(staysData);
+      // Prepare new booking entries
+      staysData.forEach((stay) => {
+        console.log("allo")
+        console.log(stay)
+        const newBooking = {
+          "hotel-id": stay.staysId,
+          "hotel-name": stay.hotelName,
+          "city": stay.city,
+          "check-in": stay.checkIn,
+          "check-out": stay.checkOut,
+          "price": stay.price,
+          "rooms": stay.rooms.toString(),
+        };
+
+        console.log(newBooking);
+        // console.log(result.bookings.booking)
+        result.bookings.booking.push(newBooking);
+      });
+
+      // Build the updated XML
+      const builder = new xml2js.Builder();
+      const updatedXML = builder.buildObject(result);
+
+      // Write back to the XML file
+      fs.writeFile(staysXML, updatedXML, (writeErr) => {
+        if (writeErr) {
+          console.error("Error writing to XML file:", writeErr);
+          return callback(writeErr);
+        }
+        console.log("Booking info appended to XML successfully!");
+        // callback(null);
+      });
+    });
   });
 });
 

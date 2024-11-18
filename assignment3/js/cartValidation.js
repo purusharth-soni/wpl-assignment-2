@@ -1,6 +1,9 @@
 const flightInfoContainer = document.getElementsByClassName(
   "flightInfoContainer"
 )[0];
+const stayInfoContainer = document.getElementsByClassName(
+  "stayInfoContainer"
+)[0];
 const adultInfoContainer =
   document.getElementsByClassName("adultInfoContainer")[0];
 const childrenInfoContainer = document.getElementsByClassName(
@@ -13,9 +16,12 @@ const bookingInfoContainer = document.getElementsByClassName(
   "bookingInfoContainer"
 )[0];
 
+var f = 0;
+
 function displayCart() {
   const cart = JSON.parse(localStorage.getItem("cartData"));
   const passengers = JSON.parse(localStorage.getItem("passengerData"));
+  console.log(cart)
   if (!cart || !passengers) {
     flightInfoContainer.innerHTML = "<p>Cart is Empty!</p>";
     return;
@@ -74,7 +80,68 @@ function displayCart() {
   displayPassengerForm(totalAdults, totalChildren, totalInfants);
 }
 
+function displayStaysCart() {
+  const stays = JSON.parse(localStorage.getItem("staysCart"));
+  console.log(stays);
+  const passengers = JSON.parse(localStorage.getItem("passengerData"));
+  if (!stays) {
+    stayInfoContainer.innerHTML = "<p>Cart is Empty!</p>";
+    return;
+  }
+  const totalAdults = parseInt(passengers.adults);
+  const totalChildren = parseInt(passengers.children);
+  const totalInfants = parseInt(passengers.infants);
+  let adultPrice = 0,
+    childrenPrice = 0,
+    infantPrice = 0;
+  let table = `
+  <h3>Selected Hotel(s)</h3>
+      <table>
+          <tr>
+              <th>Hotel Id</th>
+              <th>Hotel Name</th>
+              <th>City</th>
+              <th>Check In</th>
+              <th>Check Out</th>
+              <th>Price Per Room</th>
+              <th>Number Of Rooms Required</th>
+          </tr>`;
+
+  stays.forEach((stay) => {
+    table += `
+      <tr>
+          <td>${stay.hotelId}</td>
+          <td>${stay.name}</td>
+          <td>${stay.city}</td>
+          <td>${stay.checkin}</td>
+          <td>${stay.checkout}</td>
+          <td>${stay.price}</td>
+          <td>${stay.numRooms}</td>
+      </tr>`;
+    singlePrice = parseFloat(stay.price);
+    adultPrice += totalAdults * singlePrice;
+    childrenPrice += totalAdults * singlePrice;
+    infantPrice = 0;
+    //infantPrice += totalInfants * singlePrice * 0.1;
+  });
+
+  table += `
+    </table>
+    <p>Prices -</p>
+    <p>Adult: $${singlePrice}<br>
+    Children: $${singlePrice}<br>
+    Infant: $${infantPrice}<br>
+    Total: $${adultPrice + childrenPrice + infantPrice}<br>
+    </p>
+    `;
+    stayInfoContainer.innerHTML = table;
+
+  if(!f)
+    displayPassengerForm(totalAdults, totalChildren, totalInfants);
+}
+
 function displayPassengerForm(adults, children, infants) {
+  f = 1;
   // Add adults
   adultHtml = "";
   for (let i = 1; i <= adults; i++) {
@@ -201,6 +268,7 @@ function validateSingleEntry(firstName, lastName, dob, ssn) {
 }
 
 displayCart();
+displayStaysCart();
 
 class Person {
   constructor(firstName, lastName, ssn, dateOfBirth) {
@@ -215,10 +283,11 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const passengers = JSON.parse(localStorage.getItem("passengerData"));
   const cart = JSON.parse(localStorage.getItem("cartData"));
-  if (!passengers || !cart) {
-    alert("Cart/Passenger info is empty!");
-    return;
-  }
+  // if (!passengers || !cart) {
+  //   alert("Cart/Passenger info is empty!");
+  //   return;
+  // }
+  const stays = JSON.parse(localStorage.getItem("staysCart"));
   const totalAdults = parseInt(passengers.adults);
   const totalChildren = parseInt(passengers.children);
   const totalInfants = parseInt(passengers.infants);
@@ -327,6 +396,35 @@ document.getElementById("cartForm").addEventListener("submit", function (e) {
     bookFlight(ids, totalAdults + totalChildren + totalInfants);
     saveBooking(bookingData);
     alert("Flight booked succesfully!");
+
+    // Book Stays POST call
+    const staysData = [];
+    const staysIds = [];
+    stays.forEach((stay) => {
+      staysIds.push(stay.id);
+      staysData.push({
+        staysId: stay.hotelId,
+        hotelName: stay.name,
+        city: stay.city,
+        checkIn: stay.checkin,
+        checkOut: stay.checkout,
+        price: stay.price,
+        rooms: stay.numRooms,
+      });
+    });
+    const stayBookingData = {
+      //pnr: pnr,
+      stays: staysData,
+      passengers: {
+        adults: adultsData,
+        children: childrenData,
+        infants: infantsData,
+      },
+    };
+
+    bookStay(staysData);
+    saveStayBooking(stayBookingData);
+    alert("Flight booked succesfully!");
   }
 });
 
@@ -355,6 +453,44 @@ function bookFlight(ids, numPassengers) {
 function saveBooking(bookingData) {
   // Send POST request to server using fetch
   fetch("http://localhost:3000/save-booking", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Important to tell the server it's JSON
+    },
+    body: JSON.stringify(bookingData),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log(data); // Log server response
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function bookStay(staysData) {
+  // Send POST request to server using fetch
+  console.log(staysData)
+  fetch("http://localhost:3000/book-stay", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Important to tell the server it's JSON
+    },
+    body: JSON.stringify(staysData),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Stay Book Call successful");
+      console.log(data); // Log server response
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function saveStayBooking(bookingData) {
+  // Send POST request to server using fetch
+  fetch("http://localhost:3000/save-stay-booking", {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // Important to tell the server it's JSON

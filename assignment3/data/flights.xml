@@ -580,7 +580,7 @@
     <arrival-date>2024-09-01</arrival-date>
     <departure-time>10:00</departure-time>
     <arrival-time>13:00</arrival-time>
-    <available-seats>120</available-seats>
+    <available-seats>96</available-seats>
     <price>250.00</price>
   </flight>
   <flight>

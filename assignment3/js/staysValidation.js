@@ -109,8 +109,8 @@ document.getElementById("staysForm").addEventListener("submit", function (e) {
         <td>${hotel.hotelId}</td>
         <td>${hotel.name}</td>
         <td>${hotel.city}</td>
-        <td>${checkin.toDateString()}</td>
-        <td>${checkout.toDateString()}</td>
+        <td>${checkin.toISOString().slice(0, 10)}</td>
+        <td>${checkout.toISOString().slice(0, 10)}</td>
         <td>${hotel.price}</td>
         </tr>
         `;
@@ -155,7 +155,15 @@ document.getElementById("staysForm").addEventListener("submit", function (e) {
       }
       cart.push(hotel);
     });
+
+    const passengerData = {
+      adults: adults,
+      children: children,
+      infants: infants,
+    };
+
     localStorage.setItem("staysCart", JSON.stringify(cart));
+    localStorage.setItem("passengerData", JSON.stringify(passengerData));
     alert("Hotel added to cart successfully.");
   });
 });

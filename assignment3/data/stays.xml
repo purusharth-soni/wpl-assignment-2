@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bookings>
+  <booking>&#xD;
+</booking>
+  <booking>
+    <hotel-id>001</hotel-id>
+    <hotel-name>Austin Luxury Inn</hotel-name>
+    <city>Austin</city>
+    <check-in>2024-09-01</check-in>
+    <check-out>2024-09-02</check-out>
+    <price>150</price>
+    <rooms>1</rooms>
+  </booking>
+  <booking>
+    <hotel-id>001</hotel-id>
+    <hotel-name>Austin Luxury Inn</hotel-name>
+    <city>Austin</city>
+    <check-in>2024-09-01</check-in>
+    <check-out>2024-09-02</check-out>
+    <price>150</price>
+    <rooms>1</rooms>
+  </booking>
+</bookings>
