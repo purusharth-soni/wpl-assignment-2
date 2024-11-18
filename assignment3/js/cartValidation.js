@@ -20,13 +20,14 @@ function displayCart() {
     flightInfoContainer.innerHTML = "<p>Cart is Empty!</p>";
     return;
   }
-  adults = parseInt(passengers.adults);
-  children = parseInt(passengers.children);
-  infants = parseInt(passengers.infants);
-
-  flightInfoContainer.innerHTML += "<h3>Selected Flight</h3>";
-  cart.forEach((flight) => {
-    let table = `
+  const totalAdults = parseInt(passengers.adults);
+  const totalChildren = parseInt(passengers.children);
+  const totalInfants = parseInt(passengers.infants);
+  let adultPrice = 0,
+    childrenPrice = 0,
+    infantPrice = 0;
+  let table = `
+  <h3>Selected Flight</h3>
       <table>
           <tr>
               <th>Origin</th>
@@ -39,6 +40,8 @@ function displayCart() {
               <th>Price</th>
               <th>ID</th>
           </tr>`;
+
+  cart.forEach((flight) => {
     table += `
       <tr>
           <td>${flight.origin}</td>
@@ -51,21 +54,24 @@ function displayCart() {
           <td>${flight.price}</td>
           <td>${flight.id}</td>
       </tr>`;
-    table += "</table>";
     singlePrice = parseFloat(flight.price);
-    totalPrice = (adults + 0.7 * children + 0.1 * infants) * singlePrice;
-    table += `
-        <p>Prices -</p>
-        <p>Adult: $${adults * singlePrice}<br>
-        Children: $${children * singlePrice * 0.7}<br>
-        Infant: $${infants * singlePrice * 0.1}<br>
-        Total: $${totalPrice}<br>
-        </p>
-    `;
-    flightInfoContainer.innerHTML += table;
+    adultPrice += totalAdults * singlePrice;
+    childrenPrice += totalChildren * singlePrice * 0.7;
+    infantPrice += totalInfants * singlePrice * 0.1;
   });
 
-  displayPassengerForm(adults, children, infants);
+  table += `
+    </table>
+    <p>Prices -</p>
+    <p>Adult: $${adultPrice}<br>
+    Children: $${childrenPrice}<br>
+    Infant: $${infantPrice}<br>
+    Total: $${adultPrice + childrenPrice + infantPrice}<br>
+    </p>
+    `;
+  flightInfoContainer.innerHTML = table;
+
+  displayPassengerForm(totalAdults, totalChildren, totalInfants);
 }
 
 function displayPassengerForm(adults, children, infants) {
