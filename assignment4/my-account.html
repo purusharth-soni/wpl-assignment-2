@@ -17,9 +17,9 @@
             <li><a href="flights.html">Flights</a></li>
             <li><a href="contact-us.html">Contact Us</a></li>
             <li><a href="cart.html">Cart</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="my-account.html">My Account</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="my-account.html">My Account</a></li>
         </ul>
     </nav>
     
@@ -27,9 +27,9 @@
         <aside>
             <div id="user_info">
             </div>
-
+            
             <hr>
-
+            
             <div class="settings">
                 <label for="fontSize">Font Size:</label>
                 <select id="fontSize">
@@ -60,7 +60,62 @@
                 <li><a href="my-account.html">My Account</a></li>
             </ul>
         </aside>
-        <div class="container">
+        <div id="admin-div" class="container" style="display:none">
+            <h2>Admin Panel</h2>
+            <button id="load-flight-data" onclick="loadFlightData()">Load Flight Data</button>
+            
+            <h3>Booked Flights</h3>
+            <form>
+                <label for="city">City:</label>
+                <input type="text" id="flight-city" name="city" required />
+                <button id="get-booked-flights" onclick="getBookedFlights()">Get Booked Flights</button>
+            </form>
+            <div id="booked-flights-results"></div>
+            
+            <h3>Booked Hotels</h3>
+            <form>
+                <label for="city">City:</label>
+                <input type="text" id="hotel-city" name="city" required />
+                <button id="get-booked-hotels" onclick="getBookedHotels()">Get Booked Hotels</button>
+            </form>
+            <div id="booked-hotels-results"></div>
+            
+            <h3>Most Expensive Hotels</h3>
+            <button id="get-most-expensive-hotels" onclick="getMostExpensiveHotels()">Get Most Expensive Hotels</button>
+            <div id="most-expensive-hotels-results"></div>
+            
+            <h3>Booked Flights with Infant Passenger</h3>
+            <button id="get-booked-flights-with-infant" onclick="getBookedFlightsWithInfant()">Get Booked Flights with Infant Passenger</button>
+            <div id="booked-flights-with-infant-results"></div>
+            
+            <h3>Booked Flights with Infant Passenger and At Least 5 Children</h3>
+            <button id="get-booked-flights-with-infant-and-5-children" onclick="getBookedFlightsWithInfantAnd5Children()">Get Booked Flights with Infant Passenger and At Least 5 Children</button>
+            <div id="booked-flights-with-infant-and-5-children-results"></div>
+            
+            <h3>Most Expensive Flights</h3>
+            <button id="get-most-expensive-flights" onclick="getMostExpensiveFlights()">Get Most Expensive Flights</button>
+            <div id="most-expensive-flights-results"></div>
+            
+            <h3>Booked Flights with No Infant Passenger</h3>
+            <form>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="no-infant-flight-city" required />
+                <button id="get-booked-flights-with-no-infant" onclick="getBookedFlightsWithNoInfant()">Get Booked Flights with No Infant Passenger</button>
+            </form>
+            <div id="booked-flights-with-no-infant-results"></div>
+            
+            <h3>Count of Booked Flights Arriving in a City</h3>
+            <form>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="count-flight-city" required />
+                <button id="get-booked-flights-arriving-in-city" onclick="getBookedFlightsArrivingInCity()">Get Count of Booked Flights Arriving in City</button>
+            </form>
+            <div id="booked-flights-arriving-in-city-results"></div>
+        </div>
+        <div id="user-div" class="container" style="display:none">
+        </div>
+        <div id="login-div" class="container" style="display:none">
+            Please login to view this page.
         </div>
     </div>
     
@@ -73,5 +128,6 @@
     </footer>
     
     <script src="./js/commonValidation.js"></script>
+    <script src="./js/accountValidation.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $data->phone;
     
     // fetch user from database
-    $sql = "SELECT * FROM Users WHERE phone_number = '$phone'";
+    $sql = "SELECT * FROM USERS WHERE phone_number = '$phone'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();

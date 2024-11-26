@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $data->email;
     $gender = $data->gender;
 
-    $sql = "INSERT INTO Users (phone_number, password, first_name, last_name, date_of_birth, email, gender) VALUES ('$phone', '$pass', '$fname', '$lname', '$dob', '$email', '$gender')";
+    $sql = "INSERT INTO USERS (phone_number, password, first_name, last_name, date_of_birth, email, gender) VALUES ('$phone', '$pass', '$fname', '$lname', '$dob', '$email', '$gender')";
 
     if ($conn->query($sql) === TRUE) {
         echo "success";

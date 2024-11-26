@@ -1,3 +1,8 @@
+if (localStorage.getItem("user-phone") === null) {
+    document.getElementById("login-div").style.display = "block";
+} else {
+    document.getElementById("flights-div").style.display = "block";
+}
 const tripTypeSelect = document.getElementById("tripType");
 const passengerIcon = document.getElementById("passengerIcon");
 const passengerForm = document.getElementById("passengerForm");

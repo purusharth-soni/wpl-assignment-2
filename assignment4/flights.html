@@ -27,9 +27,9 @@
         <aside>
             <div id="user_info">
             </div>
-
+            
             <hr>
-
+            
             <div class="settings">
                 <label for="fontSize">Font Size:</label>
                 <select id="fontSize">
@@ -61,7 +61,7 @@
             </ul>
         </aside>
         
-        <div class="container">
+        <div class="container" style="display:none" id="flights-div">
             <h2>Book a Flight</h2>
             
             <div class="result"></div>
@@ -106,14 +106,15 @@
                 <button type="submit" id="flightSearch">Search</button>
             </form>
         </div>
-        
-        <footer>
-            <p class="datetime"></p>
-            <p>Group 6 | Ravneet Singh Baansal - RXB230004 | Purusharth Soni - PXS220168 | Abhisneh Singh - AXS220343</p>
-        </footer>
-        
-        <script src="js/flightsValidation.js"></script>
-        <script src="js/commonValidation.js"></script>
-    </body>
-    </html>
+        <div class="container" id="login-div" style="display:none">Please login to book a flight</div>
+    </div>
     
+    <footer>
+        <p class="datetime"></p>
+        <p>Group 6 | Ravneet Singh Baansal - RXB230004 | Purusharth Soni - PXS220168 | Abhisneh Singh - AXS220343</p>
+    </footer>
+    
+    <script src="js/flightsValidation.js"></script>
+    <script src="js/commonValidation.js"></script>
+</body>
+</html>

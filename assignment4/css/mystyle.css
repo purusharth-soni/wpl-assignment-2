@@ -69,10 +69,11 @@ footer {
     background-color: gray;
     color: white;
     text-align: center;
-    position: fixed;
+    position: relative;
     width: 100%;
     bottom: 0;
     height: 85px;
+    padding-top: 3px;
 }
 
 #flightSearch {
@@ -119,8 +120,6 @@ aside ul li a:hover {
 
 .main-body {
     display: flex;
-    height: 100vh;
-    margin-bottom: 200px;
 }
 
 table {

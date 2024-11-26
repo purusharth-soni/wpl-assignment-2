@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass = $data->password;
     
     // fetch user from database
-    $sql = "SELECT * FROM Users WHERE phone_number = '$phone' AND password = '$pass'";
+    $sql = "SELECT * FROM USERS WHERE phone_number = '$phone' AND password = '$pass'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
