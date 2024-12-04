@@ -12,18 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = new mysqli($host, $user, $dbpass, $db);
 
     $data = json_decode(file_get_contents("php://input"));
-    
-    $flight_id = $data->id;
-    $origin = $data->origin;
-    $destination = $data->destination;
-    $departure_date = $data->departureDate;
-    $arrival_date = $data->arrivalDate;
-    $departure_time = $data->departureTime;
-    $arrival_time = $data->arrivalTime;
-    $available_seats = $data->availableSeats;
+    $hotel_id = $data->id;
+    $hotel_name = $data->name;
+    $city = $data->city;
     $price = $data->price;
 
-    $sql = "INSERT INTO Flights VALUES ('$flight_id', '$origin', '$destination', '$departure_date', '$arrival_date', '$departure_time', '$arrival_time', '$available_seats', '$price')";
+    $sql = "INSERT INTO Hotels VALUES ('$hotel_id', '$hotel_name', '$city', '$price')";
     $conn->query($sql);
 }
 ?>

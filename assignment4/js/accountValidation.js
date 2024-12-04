@@ -48,6 +48,35 @@ function loadFlightData() {
     });
 }
 
+function loadStaysData() {
+    fetch("http://localhost:5500/data/hotels.json")
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach(hotel => {
+            hotel = {
+                id: hotel.hotelId,
+                name: hotel.name,
+                city: hotel.city,
+                price: hotel.price
+            }
+            storeHotel(hotel);
+        })
+    });
+}
+
+function storeHotel(hotel) {
+    const hotelString = JSON.stringify(hotel);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:5500/php/stays-load.php", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send(hotelString);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+        }
+    };
+}
+
 function storeFlight(flight) {
     const flightString = JSON.stringify(flight);
     const xhr = new XMLHttpRequest();
